@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	#container{
+		height: 450px;
+		width: 650px;
+		margin: 50px auto;
+		border: 1px solid black;
+		position: relative;
+		transition: all 2s ease;
+	}
+	#container2{
+	height: 100px;
+	width: 650px;
+	position: relative;
+	margin: 0 auto;
+	overflow: scroll;
+	transition: left .5s ease-in-out;
+}
+
+	.img2{
+		height: 100px;
+		width: 100px;
+		margin: 10px;
+	}
+	#img{
+		height: 450px;
+		width: 650px;
+		position: absolute;
+	}
+	#previous{
+		height: 450px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	#next{
+		height: 450px;
+		width: 100px;	
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.left{
+		position: absolute;
+		top: 40%;
+		left: -70%;
+	}
+	.right{
+		position: absolute;
+		top: 40%;
+		right: -70%;
+	}
+	</style>
+	<script type="text/javascript">
+		var imagecount=1;
+		var total=7;
+
+		function slide(x){
+			var image= document.getElementById('img');
+			imagecount=imagecount+x;
+			if (imagecount>total) {imagecount=1;}
+			if (imagecount<1) {imagecount=total;}
+			image.src="images/img" + imagecount+".jpg";
+		}
+		
+
+	window.setInterval(function slideA(){
+			var image= document.getElementById('img');
+			imagecount=imagecount+1;
+			if (imagecount>total) {imagecount=1;}
+			if (imagecount<1) {imagecount=total;}
+			image.src="images/img" + imagecount+".jpg";
+		},5000);	
+	
+
+	window.setInterval(function slideB(){
+			var image= document.querySelectorAll('#img2');
+			imagecount=imagecount;
+			if (imagecount>total) {imagecount=1;}
+			if (imagecount<1) {imagecount=total;}
+			image.src="images/img" + imagecount+".jpg";
+		},5000);
+	</script>
+</head>
+<body onload="slideA()">
+<div id="container">
+	<img id="img" src="images/img1.jpg">
+	<div id="previous"><button onclick="slide(-1)" class="left">Previous</button></div>
+	<div id="next"><button onclick="slide(1)" class="right">Next</button></div>
+</div>
+<div id="container2" onload="slideB()" onclick="slide(1)">
+	<img  id="img2" class="img2" src="images/img1.jpg">
+	<img class="img2" src="images/img2.jpg">
+	<img class="img2" src="images/img3.jpg">
+	<img class="img2" src="images/img4.jpg">
+	<img class="img2" src="images/img5.jpg">
+	<img class="img2" src="images/img6.jpg">
+	<img class="img2" src="images/img7.jpg">
+</div>
+</body>
+</html>
